@@ -20,7 +20,9 @@ def list():
 @login_required
 @handle_file_upload
 def upload_file(file_id, file_path, file_name):
+    print("about to upload a file")
     res, status_code = files.upload(file_path)
+    print(status_code)
     if status_code >= 400:
         return res, status_code
 
