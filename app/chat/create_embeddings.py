@@ -7,13 +7,11 @@ def create_embeddings_for_pdf(pdf_id: str, pdf_path: str):
         chunk_size=500,
         chunk_overlap=100
     )
-    print(pdf_path)
+
     loader = PyPDFLoader(pdf_path)
     docs = loader.load_and_split(text_splitter)
-    print(docs)
 
     for doc in docs:
-        print (doc)
         doc.metadata = {
             "page": doc.metadata["page"],
             "text": doc.page_content,

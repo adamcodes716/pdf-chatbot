@@ -26,10 +26,12 @@ def upload_file(file_id, file_path, file_name):
     if status_code >= 400:
         return res, status_code
 
+    print("about to create pdf")
     pdf = Pdf.create(id=file_id, name=file_name, user_id=g.user.id)
-
+    print ("about to process document")
     process_document.delay(pdf.id)
-
+    print ("finished processing document")
+    print(pdf)
     return pdf.as_dict()
 
 
